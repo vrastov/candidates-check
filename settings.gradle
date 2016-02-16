@@ -1,1 +1,3 @@
 rootProject.name = 'candidates-сheck'
+
+include(':client')
