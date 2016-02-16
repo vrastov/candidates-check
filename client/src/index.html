@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app>
+<html lang="en" data-ng-app="candidatesCheck">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,21 +51,11 @@
             <th>Имя</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Иванов</td>
-            <td>Иван</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Петр</td>
-            <td>Петров</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Василий</td>
-            <td>Васичкин</td>
+        <tbody data-ng-controller="CandidatesListCtrl">
+        <tr data-ng-repeat="candidate in candidates">
+            <td data-ng-bind="$index + 1"></td>
+            <td data-ng-bind="candidate.surname"></td>
+            <td data-ng-bind="candidate.name"></td>
         </tr>
         </tbody>
     </table>
@@ -86,5 +76,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="module/app.js"></script>
 </body>
 </html>
