@@ -1,32 +1,42 @@
 package ru.cbr.candidatesCheck.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.cbr.candidatesCheck.domen.Candidate;
+import ru.cbr.candidatesCheck.repository.ICandidateRepository;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CandidateService {
-    private ArrayList<Candidate> candidates = new ArrayList<>();
+    @Autowired
+    private ICandidateRepository candidateRepository;
 
-    public CandidateService() {
-        candidates.add(new Candidate("Иван","Иванов"));
-        candidates.add(new Candidate("Петр","Петров"));
-        candidates.add(new Candidate("Василий","Васичкин"));
+
+    @PostConstruct
+    public void init() {
+        candidateRepository.save(new Candidate("Иван", "Иванов"));
+        candidateRepository.save(new Candidate("Петр", "Петров"));
+        candidateRepository.save(new Candidate("Василий", "Васичкин"));
     }
 
+    @Transactional
     public List<Candidate> getAll(){
-        return candidates;
+        return candidateRepository.findAll();
     }
 
+    @Transactional
     public Candidate add(Candidate candidate){
-        for (Candidate storedCandidate:candidates){
-            if (storedCandidate.equals(candidate)){
+        for (Candidate storedCandidate:getAll()){
+            if (storedCandidate.getName().equalsIgnoreCase(candidate.getName()) &&
+                    storedCandidate.getSurname().equalsIgnoreCase(candidate.getSurname())){
                 throw new RuntimeException();
             }
         }
-        candidates.add(candidate);
+        candidateRepository.save(candidate);
         return candidate;
     }
 }

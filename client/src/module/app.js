@@ -4,7 +4,7 @@
     var module = angular.module('candidatesCheck',[]);
 
 
-    module.controller('CandidatesListCtrl',function($scope, candidateService){
+    module.controller('CandidatesListCtrl',function($scope, candidateService,$log){
         candidateService.getAll().then(function (candidates) {
             $scope.candidates = candidates;
         });
@@ -13,6 +13,7 @@
         $scope.add = function(){
             if (angular.isDefined($scope.name) && angular.isDefined($scope.surname)){
                 candidateService.add($scope.surname,$scope.name).then(function (result) {
+                    $log.info(angular.toJson(result));
                     $scope.candidates.push(result);
                 });
             }
