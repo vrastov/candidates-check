@@ -19,7 +19,7 @@
         }
     });
 
-    module.factory('candidateService',function($http){
+    module.factory('candidateService',function($http, $q){
         return {
             getAll:function(){
                 return $http.get('/candidate').then(function (result) {
@@ -31,9 +31,14 @@
                     name: name,
                     surname: surname
                 };
-                return $http.post('/candidate',candidate).then(function (result) {
-                    return result.data;
-                });
+                return $http.post('/candidate',candidate)
+                    .then(function (result) {
+                        return result.data;
+                    })
+                    .catch(function (result) {
+                        alert('Упс не удалось добавить кандидата!');
+                        return $q.reject(result);
+                    });
             }
         }
     });

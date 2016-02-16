@@ -28,4 +28,17 @@ public class Candidate {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Candidate candidate = (Candidate) o;
+
+        if (name != null ? !name.equals(candidate.name) : candidate.name != null) return false;
+        return !(surname != null ? !surname.equals(candidate.surname) : candidate.surname != null);
+
+    }
+
 }
