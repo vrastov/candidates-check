@@ -15,6 +15,13 @@ repositories {
     jcenter()
 }
 
+
+jar {
+    into("") {
+        from "../client/src"
+    }
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 

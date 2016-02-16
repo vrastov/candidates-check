@@ -2,6 +2,7 @@ package ru.cbr.candidatesCheck.web;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +14,8 @@ import java.io.IOException;
 
 
 @Controller
-public class RootController {
+@ConditionalOnMissingBean(name="rootProductionController")
+public class RootDevController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     @ResponseBody
     void root(HttpServletResponse response) throws IOException {
