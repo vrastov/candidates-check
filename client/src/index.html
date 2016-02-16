@@ -42,7 +42,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container"  data-ng-controller="CandidatesListCtrl">
     <table class="table">
         <thead>
         <tr>
@@ -51,7 +51,7 @@
             <th>Имя</th>
         </tr>
         </thead>
-        <tbody data-ng-controller="CandidatesListCtrl">
+        <tbody>
         <tr data-ng-repeat="candidate in candidates">
             <td data-ng-bind="$index + 1"></td>
             <td data-ng-bind="candidate.surname"></td>
@@ -60,6 +60,17 @@
         </tbody>
     </table>
 
+    <form class="well">
+        <div class="form-group">
+            <label for="surname">Фамилия</label>
+            <input class="form-control" id="surname" data-ng-model="surname">
+        </div>
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input class="form-control" id="name" data-ng-model="name">
+        </div>
+        <button data-ng-click="add()" class="btn btn-default">Добавить</button>
+    </form>
 </div>
 
 
