@@ -11,7 +11,6 @@ import ru.cbr.candidatesCheck.service.CandidateService;
 
 import java.util.List;
 
-@RestController
 @RequestMapping(value = "/candidate")
 public class CandidateController {
     @Autowired
