@@ -25,7 +25,7 @@ public class CandidateService {
 
     @Transactional
     public List<Candidate> getAll(){
-        return candidateRepository.findAll()
+        return candidateRepository.findAll();
     }
 
     @Transactional
