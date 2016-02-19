@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
++@RestController
 @Service
 public class CandidateService {
     @Autowired
@@ -25,7 +26,7 @@ public class CandidateService {
 
     @Transactional
     public List<Candidate> getAll(){
-        return candidateRepository.findAll()
+        return candidateRepository.findAll();
     }
 
     @Transactional
